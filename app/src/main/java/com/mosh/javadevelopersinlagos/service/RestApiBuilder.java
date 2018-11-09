@@ -1,11 +1,11 @@
-package ng.codeimpact.javadevelopersinlagos.service;
+package com.mosh.javadevelopersinlagos.service;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestApiBuilder {
 
-    public static final String BASE_URL = "https://api.github.com";
+    private static final String BASE_URL = "https://api.github.com";
 
     private Retrofit retrofit;
 
@@ -16,7 +16,7 @@ public class RestApiBuilder {
                 .build();
     }
 
-    public RestApiService getService() {
-        return retrofit.create(RestApiService.class);
+    public com.mosh.javadevelopersinlagos.service.RestApiService getService() {
+        return retrofit.create(com.mosh.javadevelopersinlagos.service.RestApiService.class);
     }
 }

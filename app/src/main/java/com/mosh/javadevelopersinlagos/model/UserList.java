@@ -1,4 +1,4 @@
-package ng.codeimpact.javadevelopersinlagos.model;
+package com.mosh.javadevelopersinlagos.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

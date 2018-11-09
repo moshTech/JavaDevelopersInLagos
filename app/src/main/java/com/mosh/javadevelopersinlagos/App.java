@@ -1,7 +1,8 @@
-package ng.codeimpact.javadevelopersinlagos;
+package com.mosh.javadevelopersinlagos;
 
 import android.app.Application;
 
+import ng.codeimpact.javadevelopersinlagos.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 public class App extends Application {

@@ -1,4 +1,4 @@
-package ng.codeimpact.javadevelopersinlagos.util;
+package com.mosh.javadevelopersinlagos.util;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,7 +14,7 @@ public class ShareUtils {
     public static void shareCustom(String message, Context context)
     {
         String text = message;
-        List<Intent> targetShareIntents=new ArrayList<Intent>();
+        List<Intent> targetShareIntents=new ArrayList<>();
         Intent shareIntent=new Intent();
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");

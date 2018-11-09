@@ -8,4 +8,5 @@
     <string name="user_url_full">%s</string>
     <string name="user_name">moshTech</string>
     <string name="user_url">https://github.com/moshTech</string>
+    <string name="location">Lagos</string>
 </resources>

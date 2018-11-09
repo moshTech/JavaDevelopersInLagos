@@ -1,4 +1,4 @@
-package ng.codeimpact.javadevelopersinlagos.model;
+package com.mosh.javadevelopersinlagos.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -29,7 +29,7 @@ public class User implements Parcelable {
 
 
 
-    protected User(Parcel in) {
+    private User(Parcel in) {
         login = in.readString();
         avatarUrl = in.readString();
         gravatarId = in.readString();

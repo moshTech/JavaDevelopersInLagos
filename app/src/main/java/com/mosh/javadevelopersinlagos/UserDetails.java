@@ -1,13 +1,11 @@
-package ng.codeimpact.javadevelopersinlagos;
+package com.mosh.javadevelopersinlagos;
 
 import android.content.Context;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,12 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
-import org.w3c.dom.Text;
+import com.mosh.javadevelopersinlagos.model.User;
+import com.mosh.javadevelopersinlagos.util.ShareUtils;
 
 import me.saket.bettermovementmethod.BetterLinkMovementMethod;
-import ng.codeimpact.javadevelopersinlagos.model.User;
-import ng.codeimpact.javadevelopersinlagos.util.ShareUtils;
+import ng.codeimpact.javadevelopersinlagos.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class UserDetails extends AppCompatActivity {
@@ -41,10 +38,10 @@ public class UserDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detials);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,9 +54,9 @@ public class UserDetails extends AppCompatActivity {
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setTitle("");
 
-        user_avatar = (ImageView) collapsingToolbarLayout.findViewById(R.id.user_avatar);
-        user_name_details = (TextView) findViewById(R.id.user_name_details);
-        user_github_url = (TextView) findViewById(R.id.github_profile_url);
+        user_avatar = collapsingToolbarLayout.findViewById(R.id.user_avatar);
+        user_name_details = findViewById(R.id.user_name_details);
+        user_github_url = findViewById(R.id.github_profile_url);
 
         //getting intent extra
         User user = getIntent().getParcelableExtra("user");

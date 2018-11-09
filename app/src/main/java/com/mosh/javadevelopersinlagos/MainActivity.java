@@ -21,7 +21,6 @@ import com.mosh.javadevelopersinlagos.model.UserList;
 import com.mosh.javadevelopersinlagos.service.RestApiBuilder;
 import com.mosh.javadevelopersinlagos.service.RestApiService;
 
-import ng.codeimpact.javadevelopersinlagos.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

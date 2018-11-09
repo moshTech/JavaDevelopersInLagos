@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.mosh.javadevelopersinlagos.R;
 import com.mosh.javadevelopersinlagos.UserDetails;
 import com.mosh.javadevelopersinlagos.model.User;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import ng.codeimpact.javadevelopersinlagos.R;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
 

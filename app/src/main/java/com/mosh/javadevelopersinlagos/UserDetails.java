@@ -19,7 +19,6 @@ import com.mosh.javadevelopersinlagos.model.User;
 import com.mosh.javadevelopersinlagos.util.ShareUtils;
 
 import me.saket.bettermovementmethod.BetterLinkMovementMethod;
-import ng.codeimpact.javadevelopersinlagos.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class UserDetails extends AppCompatActivity {

@@ -5,7 +5,7 @@ Android app to retrieve a list of Java Developers in Lagos using the Github API
 
 ## Getting Started
 
-You can glone or download this project to your local machine. 
+You can clone or download this project to your local machine. 
 
 ### Prerequisites
 

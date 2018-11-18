@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
 
+    private static final String TAG = "UserAdapter";
     private List<User> userList;
+    private Context mContext;
 
-     class MyViewHolder extends RecyclerView.ViewHolder {
-        CircleImageView user_profile_avatar;
+     public class MyViewHolder extends RecyclerView.ViewHolder {
+        CircleImageView user_profile_avatar; //To use circle images
         TextView username, user_state;
 
 
@@ -37,8 +40,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     }
 
 
-    public UserAdapter(List<User> userList) {
+    public UserAdapter(Context mContext, List<User> userList) {
         this.userList = userList;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -52,28 +56,28 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        Log.d(TAG, "onBindViewHolder:  called.");
         final User user = userList.get(position);
 
         holder.username.setText(user.getLogin());
-        holder.user_state.setText("lagos");
+        holder.user_state.setText(R.string.state);
 
 
         //Loading the image using Glide
-        Context context = holder.user_profile_avatar.getContext();
-        Glide.with(context).load(user.getAvatarUrl()).into(holder.user_profile_avatar);
+         mContext = holder.user_profile_avatar.getContext();
+        Glide.with(mContext).load(user.getAvatarUrl()).into(holder.user_profile_avatar);
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = holder.itemView.getContext();
-                Intent intent = new Intent(context, UserDetails.class);
+                mContext  = holder.itemView.getContext();
+                Intent intent = new Intent(mContext, UserDetails.class);
                 intent.putExtra("user", user);
-                context.startActivity(intent);
+                mContext.startActivity(intent);
 
             }
         });
-
 
     }
 

@@ -23,6 +23,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class UserDetails extends AppCompatActivity {
 
+    //member variables
     private TextView user_name_details, user_github_url;
     private ImageView user_avatar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
@@ -40,6 +41,7 @@ public class UserDetails extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //share fab button
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,16 +52,19 @@ public class UserDetails extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        //To collapse the  profile image
         collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setTitle("");
+        //collapsingToolbarLayout.setTitle("Pull down to view the image");
+        //collapsingToolbarLayout.setTitleEnabled(false);
 
         user_avatar = collapsingToolbarLayout.findViewById(R.id.user_avatar);
+        //collapsingToolbarLayout.setTitleEnabled(true);
         user_name_details = findViewById(R.id.user_name_details);
         user_github_url = findViewById(R.id.github_profile_url);
 
         //getting intent extra
         User user = getIntent().getParcelableExtra("user");
-
 
         user_name_details.setText(getString(R.string.user_name_full, user.getLogin()));
         user_github_url.setText(getString(R.string.user_url_full, user.getHtmlUrl()));
@@ -67,6 +72,7 @@ public class UserDetails extends AppCompatActivity {
         //loading imageurl with Glide
         Glide.with(getApplicationContext()).load(user.getAvatarUrl()).into(user_avatar);
 
+        //To add link to the user_github_url, i.e intent to use to browse it
         BetterLinkMovementMethod movementMethod = BetterLinkMovementMethod.linkify(Linkify.WEB_URLS, user_github_url);
         movementMethod.setOnLinkClickListener(new BetterLinkMovementMethod.OnLinkClickListener() {
             @Override
@@ -85,9 +91,10 @@ public class UserDetails extends AppCompatActivity {
 
     private void shareProfile() {
 
+        //Getting the intent
         User user = getIntent().getParcelableExtra("user");
 
-
+        //Message to share
         String message = "Check out this awesome developer @" + user.getLogin() + ", " + user.getUrl();
 
         ShareUtils.shareCustom(message, this);

@@ -6,6 +6,11 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/*To pass objects between two components in Android,
+    these objects have to implements Android Parcelable interface.Parcelable
+    Android is a serialization and deserialization mechanism as we are used in Java.
+*/
+
 public class User implements Parcelable {
 
     @SerializedName("login")
@@ -27,19 +32,17 @@ public class User implements Parcelable {
     @Expose
     private String htmlUrl;
 
-
-
+    // "De-parcel object
     private User(Parcel in) {
         login = in.readString();
         avatarUrl = in.readString();
         gravatarId = in.readString();
         url = in.readString();
         htmlUrl = in.readString();
-
-
     }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
+    //Creator
+    public static final Creator CREATOR = new Creator() {
         @Override
         public User createFromParcel(Parcel in) {
             return new User(in);
@@ -51,6 +54,7 @@ public class User implements Parcelable {
         }
     };
 
+    //Getter and Setter for all members
     public String getLogin() {
         return login;
     }
@@ -99,9 +103,6 @@ public class User implements Parcelable {
         this.htmlUrl = htmlUrl;
     }
 
-
-
-
     @Override
     public int describeContents() {
         return 0;
@@ -114,7 +115,5 @@ public class User implements Parcelable {
         dest.writeString(gravatarId);
         dest.writeString(url);
         dest.writeString(htmlUrl);
-
-
     }
 }

@@ -1,10 +1,41 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ng.codeimpact.javadevelopersinlagos.MainActivity">
+    tools:context="com.mosh.javadevelopersinlagos.MainActivity">
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/lagos"
+        android:orderInCategory="10"
+        android:title="@string/lagos"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/osun"
+        android:orderInCategory="20"
+        android:title="@string/osun"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/oyo"
+        android:orderInCategory="30"
+        android:title="@string/oyo"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/abuja"
+        android:orderInCategory="40"
+        android:title="@string/abuja"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/ondo"
+        android:orderInCategory="50"
+        android:title="@string/ondo"
+        app:showAsAction="never" />
+
 </menu>

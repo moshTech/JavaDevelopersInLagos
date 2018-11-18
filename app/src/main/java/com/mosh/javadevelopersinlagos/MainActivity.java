@@ -1,8 +1,10 @@
 package com.mosh.javadevelopersinlagos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,9 +31,11 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+    private static String location = "lagos";
+
     private RecyclerView recyclerView;
-    private UserAdapter adapter;
-    private CoordinatorLayout coordinatorLayout;
+    private Context mContext;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -43,17 +48,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Log.d(TAG, "onCreate:  started.");
 
+        //suggestion fab
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                String [] recipients = {"mosh.onaarajnr@gmail.com", "oyetolamoshoodabiola@gmail.com"};
+                    Intent intent = new Intent(Intent.ACTION_SENDTO);
+                    intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+                    intent.putExtra(Intent.EXTRA_EMAIL, recipients);
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Suggestions (Lagos Java Developer)");
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                }
             }
         });
 
-        coordinatorLayout = findViewById(R.id.coordinator_layout);
+        //Layout manager
+        CoordinatorLayout coordinatorLayout = findViewById(R.id.coordinator_layout);
         recyclerView = findViewById(R.id.recycler_user_list);
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setHasFixedSize(true);
@@ -78,19 +92,17 @@ public class MainActivity extends AppCompatActivity {
             fetchUsersData();
         }
 
-
     }
 
-
     private void prepareData(UserList userList) {
-        adapter = new UserAdapter(userList.getItems());
+        Log.d(TAG, "prepareData:  prepareData");
+        UserAdapter adapter = new UserAdapter(this, userList.getItems());
         recyclerView.setAdapter(adapter);
 
     }
 
-
     private void fetchUsersData() {
-        String searchParams = "language:java location:lagos";
+        String searchParams = "language:java location:"+location;
         RestApiService apiService = new RestApiBuilder().getService();
         Call<UserList> userListCall = apiService.getUserList(searchParams);
         userListCall.enqueue(new Callback<UserList>() {
@@ -102,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
 
                     Toast.makeText(MainActivity.this,
-                            "Request not Sucessful",
+                            "Request not Successful",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -138,10 +150,35 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.lagos:
+                location = "lagos";
+                fetchUsersData();
+                return true;
+
+            case R.id.osun:
+                location = "osun";
+                fetchUsersData();
+                return true;
+
+            case R.id.oyo:
+                location = "oyo";
+                fetchUsersData();
+                return true;
+
+            case R.id.ondo:
+                location = "ondo";
+                fetchUsersData();
+                return true;
+
+            case R.id.abuja:
+                location = "abuja";
+                fetchUsersData();
+                return true;
+
+                default:
+                    return super.onOptionsItemSelected(item);
         }
 
-        return super.onOptionsItemSelected(item);
     }
 }
